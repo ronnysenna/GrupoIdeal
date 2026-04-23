@@ -5,7 +5,7 @@
   let currentCity = 'palmacia';
 
   // Carrega config
-  fetch('../../sites.config.json')
+  fetch('../sites.config.json')
     .then(r => r.json())
     .then(data => {
       sitesConfig = data;
