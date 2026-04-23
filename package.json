@@ -1,0 +1,12 @@
+{
+  "name": "idealnet-site",
+  "private": true,
+  "description": "Sites do grupo Ideal Soluções — build das filiais Ideal NET",
+  "scripts": {
+    "build": "node scripts/build-idealnet-pages.mjs",
+    "sitemap": "node scripts/generate-sitemap.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

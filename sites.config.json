@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "brand": "Ideal Soluções",
+    "idealNetBrand": "Ideal NET",
+    "description": "Grupo Ideal Soluções — internet, conectividade e soluções para empresas.",
+    "inventoryNote": "URLs de central e contatos por filial; ajuste em produção se mudar."
+  },
+  "whatsappMessageEncoded": "Ol%C3%A1%20Ideal%20NET,%20pode%20me%20passar%20algumas%20informa%C3%A7%C3%B5es?",
+  "groupLinks": {
+    "idealRastreamento": {
+      "label": "Ideal Rastreamento",
+      "description": "Soluções em rastreamento e monitoramento.",
+      "href": "https://www.idealsolucoes.com.br",
+      "external": true
+    },
+    "teralink": {
+      "label": "Teralink (Fortaleza)",
+      "description": "Fibra e central do assinante.",
+      "href": "cidades/teralink/",
+      "external": false,
+      "contact": {
+        "whatsappPhoneParam": "5585984330586",
+        "whatsappDisplay": "(85) 98433-0586",
+        "email": "admteralink@gmail.com",
+        "address": "Av. Valparaiso, 1300 - Autos - Messejana - Fortaleza/CE",
+        "centralUrl": "https://central.teralinkfibra.com.br/central/login.hhvm"
+      },
+      "plans": [
+        { "speed": "50", "price": "49,90" },
+        { "speed": "80", "price": "79,90" },
+        { "speed": "100", "price": "89,90" },
+        { "speed": "200", "price": "99,90" }
+      ]
+    }
+  },
+  "cities": [
+    {
+      "id": "palmacia",
+      "titleCity": "Palmácia",
+      "centralUrl": "http://palmacia.provedoridealnet.com:8085/central/login.hhvm",
+      "email": "palmacia@provedoridealnet.com",
+      "address": "Rua José de Lima Luz, 82 - Centro - Palmácia- CE",
+      "phoneTelHref": "tel:+5585992025109",
+      "phoneLabel": "(85) 99202-5109",
+      "whatsappPhoneParam": "5585992025109",
+      "whatsappDisplay": "(85) 99202-5109",
+      "facebookUrl": "https://www.facebook.com/idealnetmacico",
+      "instagramUrl": "https://www.instagram.com/idealnet_macico"
+    },
+    {
+      "id": "pacoti",
+      "titleCity": "Pacoti",
+      "centralUrl": "http://pacoti.provedoridealnet.com:8085/central/login.hhvm",
+      "email": "pacoti@provedoridealnet.com",
+      "address": "Rua Pe. Quiliano, s/n - Centro - Pacoti - CE",
+      "phoneTelHref": "tel:+5585981708623",
+      "phoneLabel": "(85) 98170-8623",
+      "whatsappPhoneParam": "5585992025109",
+      "whatsappDisplay": "(85) 99202-5109",
+      "facebookUrl": "https://www.facebook.com/idealnetmacico",
+      "instagramUrl": "https://www.instagram.com/idealnet_macico"
+    },
+    {
+      "id": "ibicuitinga",
+      "titleCity": "Ibicuitinga",
+      "centralUrl": "http://ibicuitinga.provedoridealnet.com/central/login.hhvm",
+      "email": "Ibicuitinga@provedoridealnet.com",
+      "address": "Av. José Furtado, 1713 - Centro - Ibicuitinga - CE",
+      "phoneTelHref": "tel:+5588992280155",
+      "phoneLabel": "(88) 99228-0155",
+      "whatsappPhoneParam": "5588992280155",
+      "whatsappDisplay": "(88) 99228-0155",
+      "facebookUrl": "https://www.facebook.com/idealnetibicuitinga",
+      "instagramUrl": "https://www.instagram.com/idealnet_ibicuitinga"
+    }
+  ]
+}
