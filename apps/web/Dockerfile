@@ -21,12 +21,11 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
 COPY apps/web ./apps/web
 COPY packages ./packages
-# Prisma: gerado no estágio deps (postinstall). Build: `next` via path no monorepo (pnpm não expõe bin em apps/web).
+# Prisma: gerado no estágio deps (postinstall). Next: pnpm coloca o pacote em .pnpm, não use path fixo em node_modules.
 ENV NEXT_TELEMETRY_DISABLED=1
 ARG DATABASE_URL=postgresql://ideal:local@127.0.0.1:5432/idealnet?schema=public
 ENV DATABASE_URL=$DATABASE_URL
-WORKDIR /app/apps/web
-RUN node ../../node_modules/next/dist/bin/next build
+RUN node -e "const{createRequire}=require('module'),{execFileSync}=require('child_process'),p=createRequire('/app/apps/web/package.json').resolve('next/dist/bin/next');execFileSync(process.execPath,[p,'build'],{stdio:'inherit',cwd:'/app/apps/web'})"
 
 FROM base AS runner
 WORKDIR /app
