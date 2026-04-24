@@ -46,13 +46,59 @@ php -S localhost:8000
 # http://localhost:8000/                                  → Hub
 # http://localhost:8000/cidades/idealnet-unified.html     → Ideal NET
 # http://localhost:8000/cidades/teralink/                 → Teralink
+# http://localhost:8000/cidades/teralink/forms/           → Formulário Cadastro (Modernizado)
 ```
 
-### Opção 2: Python
+### Opção 2: Python (apenas para HTML estático)
 
 ```bash
 python3 -m http.server 8000
+# Nota: Formulários PHP não funcionarão com servidor Python
 ```
+
+### Instalar Dependências dos Formulários
+
+```bash
+# Execute o script de instalação
+./install-forms.sh
+
+# Ou manualmente
+cd cidades/teralink/forms && composer install
+cd ../palmacia/forms && composer install
+cd ../pacoti/forms && composer install
+cd ../ibicuitinga/forms && composer install
+```
+
+---
+
+## ✨ Novidades - Formulários Modernizados (v2.0)
+
+Os formulários de cadastro de todas as cidades foram completamente refatorados:
+
+### Frontend Moderno
+- ✅ **Design System**: Interface limpa e profissional sem Bootstrap
+- ✅ **Validação em Tempo Real**: Feedback instantâneo para o usuário
+- ✅ **Máscaras Automáticas**: CPF, telefone e CEP formatados
+- ✅ **Auto-completar**: CEP busca endereço via ViaCEP
+- ✅ **Loading States**: Indicadores visuais durante envio
+- ✅ **100% Responsivo**: Mobile-first design
+
+### Backend Robusto
+- ✅ **Arquitetura OOP**: Classes organizadas e reutilizáveis
+- ✅ **Validações Duplas**: Frontend + Backend
+- ✅ **Sanitização Completa**: Proteção contra XSS e SQL Injection
+- ✅ **API RESTful**: Respostas padronizadas em JSON
+- ✅ **E-mail HTML**: Templates profissionais
+- ✅ **Anti-Spam**: Honeypot e validações de segurança
+
+### Banco (cadastros)
+- Schema de exemplo: `shared/database/schema.sql`
+
+**Acesse os formulários modernizados:**
+- http://localhost:8000/cidades/teralink/forms/
+- http://localhost:8000/cidades/palmacia/forms/
+- http://localhost:8000/cidades/pacoti/forms/
+- http://localhost:8000/cidades/ibicuitinga/forms/
 
 ---
 
@@ -135,8 +181,7 @@ NÃO fazer upload:
 ├── node_modules/
 ├── vendor/ (gerar no servidor)
 ├── .env (criar no servidor)
-├── .git/
-└── *.md (documentação)
+└── .git/
 ```
 
 ### 4. Comandos no Servidor
@@ -299,13 +344,6 @@ Use o modelo em `includes/idealnet-mail.php` como referência.
 
 **Projeto:** Site Grupo Ideal Soluções  
 **Versão:** 2.0 (Modernizado)  
-**Data:** Abril 2024  
-**Status:** 🟢 Produção Ready
+**Status:** Produção
 
-### Changelog
-- **Abril 2024:** Modernização completa
-  - 36 páginas → 2 páginas unificadas
-  - Removido jQuery e Bootstrap
-  - Performance otimizada (97% menor)
-  - Design system moderno
-  - Documentação consolidada
+**Histórico resumido:** modernização do hub, páginas unificadas, formulários de cadastro com assets em `shared/`.

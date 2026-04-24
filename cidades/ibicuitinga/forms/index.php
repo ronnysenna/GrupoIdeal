@@ -1,388 +1,272 @@
 <!DOCTYPE html>
-
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Cadastro de Clientes</title>
-
-    <link rel="icon" type="image/png" href="./imagens/icone.png">
-
-    <link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
-
-</head>
-<style>
-        html {
-            background: linear-gradient(90deg, rgba(33, 150, 243, 1) 0%, rgba(41, 121, 255, 1) 100%);
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Estilo para o body com fundo branco */
-        body {
-            background-color: white;
-            width: 90%; /* Usar 90% da largura em telas menores */
-            max-width: 900px; /* Largura máxima em telas maiores */
-            margin: 50px auto; /* Centraliza o conteúdo */
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box; /* Garante que o padding seja considerado na largura total */
-        }
-
-        /* Estilo para os campos do formulário */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            background-color: #f7f7f7;
-            transition: all 0.3s ease;
-            box-sizing: border-box; /* Garante que o padding seja considerado na largura total */
-        }
-
-        /* Estilos específicos para o campo de data */
-        .form-group input[type="date"] {
-            height: auto;
-            padding: 10px; /* Ajuste de padding para dispositivos móveis */
-            font-size: 16px;
-        }
-
-        /* Estilos específicos para o select */
-        .form-group select {
-            height: 48px;  /* Ajusta a altura do select */
-            padding: 8px;  /* Ajusta o padding */
-            line-height: normal;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #007bff;
-            background-color: #fff;
-        }
-
-        /* Estilo para o título */
-        h2 {
-            text-align: center;
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 30px;
-        }
-
-        /* Estilo para o botão */
-        .btn-primary {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-        /* Ajustes para o label do formulário */
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        /* Consultas de mídia para dispositivos menores */
-        @media (max-width: 768px) {
-            body {
-                padding: 20px;
-                margin: 20px auto;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            .btn-primary {
-                padding: 12px;
-            }
-
-            .form-group input[type="date"] {
-                font-size: 12px;
-                /* height: auto; */
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 15px;
-            }
-
-            h2 {
-                font-size: 18px;
-            }
-
-            .form-group input,
-            .form-group select,
-            .form-group textarea {
-                font-size: 14px;
-            }
-
-            .form-group input[type="date"] {
-                padding: 12px;
-                font-size: 14px;
-            }
-
-            .btn-primary {
-                padding: 10px;
-                font-size: 14px;
-            }
+    <meta name="description" content="Cadastro de clientes Ideal NET - Internet fibra óptica em Ibicuitinga">
+    <title>Cadastro de Clientes | Ideal NET Ibicuitinga</title>
+    
+    <?php
+    // Definir base URL automaticamente
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+    // Remove /cidades/ibicuitinga/forms do caminho para ficar na raiz
+    $path = str_replace('/cidades/ibicuitinga/forms', '', dirname($_SERVER['SCRIPT_NAME']));
+    $baseUrl = $protocol . '://' . $host . $path . '/';
+    ?>
+    
+    <!-- Base URL para todos os recursos -->
+    <base href="<?php echo $baseUrl; ?>">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="cidades/ibicuitinga/forms/imagens/icone.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos Modernos -->
+    <link rel="stylesheet" href="shared/css/form-modern.css">
+    
+    <style>
+        /* Cores customizadas para Ibicuitinga */
+        :root {
+            --primary-color: #2196F3;
+            --primary-hover: #1976D2;
+            --primary-light: #E3F2FD;
         }
     </style>
+</head>
 <body>
-
-    <div class="container mt-5">
-
-        <h2 class="text-center">Cadastro de Clientes</h2>
-
-        <form id="clientesForm" method="post" action="cadastro_clientes.php">
-
-            
-
-            <!-- Data do Cadastro -->
-
-            <div class="form-group col-12">
-
-                <input type="text" id="dataCadastro" name="date_cadas" placeholder="Data do Cadastro" required class="form-control" />
-
-            </div>
-
-
-
-            <!-- Nome -->
-
-            <div class="form-group col-12">
-
-                <input type="text" name="nome" placeholder="Nome" required class="form-control" />
-
-            </div>
-
-
-
-            <!-- Email -->
-
-            <div class="form-group col-12">
-
-                <input type="email" name="email" placeholder="Email" required class="form-control" />
-
-            </div>
-
-
-
-            <!-- CPF -->
-
-            <div class="form-group col-12">
-
-                <input type="text" name="cpf" placeholder="CPF" required class="form-control" maxlength="14" />
-
-            </div>
-
-
-
-            <!-- RG -->
-
-            <div class="form-group col-12">
-
-                <input type="text" name="rg" placeholder="RG" required class="form-control" />
-
-            </div>
-
-
-
-            <!-- Telefone Principal -->
-
-            <div class="form-group col-12">
-
-                <input type="tel" name="fone1" placeholder="Telefone Principal" required class="form-control" />
-
-            </div>
-
-
-
-            <!-- Telefone Secundário -->
-
-            <div class="form-group col-12">
-
-                <input type="tel" name="fone2" placeholder="Telefone Secundário" class="form-control" />
-
-            </div>
-
-
-
-            <!-- Data de Nascimento -->
-
-            <div class="form-group col-12">
-            
-                <label for="nasc">Data de Nascimento</label>
-                <input type="date" name="nasc" required class="form-control" />
-
-            </div>
-
-
-
-            <!-- Plano Sede -->
-
-            <div class="form-group col-12">
-
-                <label for="plano_sede">Planos</label>
-
-                <select name="plano_sede" id="plano_sede" required class="form-control">
-                
-                <option value="">Selecione o Plano </option>
-
-                <option value="" style= 'font-weight: bold;'>Plano Sede</option>
-
-                    <option value="30mb">30 MB (60,00)</option>
-
-                    <option value="50mb">50 MB (75,90)</option>
-
-                    <option value="100mb">100 MB (85,90)</option>
-
-                    <option value="200mb">200 MB (99,90)</option>
-                    
-                    <option value=""style= 'font-weight: bold;'>Plano Distrito</option>
-
-                    <option value="10mb">10 MB (60,00)</option>
-
-                    <option value="15mb">15 MB (70,00)</option>
-
-                    <option value="20mb">20 MB (80,00)</option>
-
-
-                </select>
-
-            </div>
-
-
-            <!-- Dia de Vencimento -->
-
-            <div class="form-group col-12">
-
-                <label for="venc">Dia de Vencimento</label>
-
-                <select name="venc" id="venc" required class="form-control">
-
-                    <option value="">Selecione o Dia de Vencimento</option>
-
-                    <option value="05">05</option>
-
-                    <option value="10">10</option>
-
-                    <option value="20">20</option>
-
-                    <option value="25">25</option>
-
-                </select>
-
-            </div>
-
-
-
-            <!-- CEP -->
-
-            <div class="form-group col-12">
-
-                <input type="text" name="cep" placeholder="CEP" required class="form-control" />
-
-            </div>
-
-
-
-            <!-- Endereço -->
-
-            <div class="form-group col-12">
-
-            <input type="text" name="endereco" placeholder="Endereço" required class="form-control" />
-
-            </div>
-
-
-
-            <!-- Bairro -->
-
-            <div class="form-group col-12">
-
-                <input type="text" name="bairro" placeholder="Bairro" required class="form-control" />
-
-            </div>
-
-
-
-            <!-- Observações -->
-
-            <div class="form-group col-12">
-
-                <textarea type="text" name="obs" placeholder="Ponto de Referença" class="form-control"></textarea>
-
-            </div>
-
-
-
-            <!-- Botão Enviar -->
-
-            <div class="form-group col-12">
-
-                <button type="submit" class="btn btn-primary w-100">Enviar</button>
-
-            </div>
-
-        </form>
-
+    <div class="form-container">
+        <!-- Header -->
+        <div class="form-header">
+            <img
+                class="form-header__logo"
+                src="images/logoGrupoIdeal.png"
+                alt="Grupo Ideal Soluções"
+                width="220"
+                height="72"
+                loading="eager"
+                decoding="async"
+            >
+            <h1>Cadastro de Clientes</h1>
+            <p>Ideal NET - Ibicuitinga/CE</p>
+        </div>
+
+        <!-- Body -->
+        <div class="form-body">
+            <form id="cadastroForm" method="POST" action="cidades/ibicuitinga/forms/cadastro_clientes.php">
+                <div class="form-grid">
+                    <!-- Data de Cadastro -->
+                    <div class="form-group">
+                        <label class="form-label" for="dataCadastro">Data do Cadastro</label>
+                        <input 
+                            type="text" 
+                            id="dataCadastro" 
+                            name="date_cadas" 
+                            class="form-input"
+                            readonly
+                        >
+                    </div>
+
+                    <!-- Nome Completo -->
+                    <div class="form-group">
+                        <label class="form-label required" for="nome">Nome Completo</label>
+                        <input 
+                            type="text" 
+                            id="nome" 
+                            name="nome" 
+                            class="form-input"
+                            placeholder="Digite seu nome completo"
+                            required
+                        >
+                    </div>
+
+                    <!-- E-mail -->
+                    <div class="form-group">
+                        <label class="form-label required" for="email">E-mail</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input"
+                            placeholder="seu@email.com"
+                            required
+                        >
+                    </div>
+
+                    <!-- CPF -->
+                    <div class="form-group">
+                        <label class="form-label required" for="cpf">CPF</label>
+                        <input 
+                            type="text" 
+                            id="cpf" 
+                            name="cpf" 
+                            class="form-input"
+                            placeholder="000.000.000-00"
+                            maxlength="14"
+                            required
+                        >
+                    </div>
+
+                    <!-- RG -->
+                    <div class="form-group">
+                        <label class="form-label required" for="rg">RG</label>
+                        <input 
+                            type="text" 
+                            id="rg" 
+                            name="rg" 
+                            class="form-input"
+                            placeholder="Digite seu RG"
+                            required
+                        >
+                    </div>
+
+                    <!-- Telefone Principal -->
+                    <div class="form-group">
+                        <label class="form-label required" for="fone1">Telefone Principal</label>
+                        <input 
+                            type="tel" 
+                            id="fone1" 
+                            name="fone1" 
+                            class="form-input"
+                            placeholder="(00) 00000-0000"
+                            required
+                        >
+                    </div>
+
+                    <!-- Telefone Secundário -->
+                    <div class="form-group">
+                        <label class="form-label" for="fone2">Telefone Secundário</label>
+                        <input 
+                            type="tel" 
+                            id="fone2" 
+                            name="fone2" 
+                            class="form-input"
+                            placeholder="(00) 00000-0000"
+                        >
+                        <span class="form-hint">Opcional</span>
+                    </div>
+
+                    <!-- Data de Nascimento -->
+                    <div class="form-group">
+                        <label class="form-label required" for="nasc">Data de Nascimento</label>
+                        <input 
+                            type="date" 
+                            id="nasc" 
+                            name="nasc" 
+                            class="form-input"
+                            required
+                        >
+                    </div>
+
+                    <!-- Planos -->
+                    <div class="form-group">
+                        <label class="form-label required" for="plano_sede">Escolha seu Plano</label>
+                        <select id="plano_sede" name="plano_sede" class="form-select" required>
+                            <option value="">Selecione o plano</option>
+                            <optgroup label="Planos Fibra - Sede">
+                                <option value="50MB">50 Mega - R$ 49,90</option>
+                                <option value="100MB">100 Mega - R$ 59,90</option>
+                                <option value="200MB">200 Mega - R$ 79,90</option>
+                                <option value="300MB">300 Mega - R$ 99,90</option>
+                                <option value="400MB">400 Mega - R$ 149,90</option>
+                            </optgroup>
+                            <optgroup label="Planos Rádio - Localidades">
+                                <option value="10MB">10 Mega - R$ 49,90</option>
+                                <option value="20MB">20 Mega - R$ 59,90</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <!-- Dia de Vencimento -->
+                    <div class="form-group">
+                        <label class="form-label required" for="venc">Dia de Vencimento</label>
+                        <select id="venc" name="venc" class="form-select" required>
+                            <option value="">Selecione o dia</option>
+                            <option value="05">Dia 05</option>
+                            <option value="10">Dia 10</option>
+                            <option value="15">Dia 15</option>
+                            <option value="20">Dia 20</option>
+                            <option value="25">Dia 25</option>
+                        </select>
+                    </div>
+
+                    <!-- CEP -->
+                    <div class="form-group">
+                        <label class="form-label required" for="cep">CEP</label>
+                        <input 
+                            type="text" 
+                            id="cep" 
+                            name="cep" 
+                            class="form-input"
+                            placeholder="00000-000"
+                            maxlength="9"
+                            required
+                        >
+                        <span class="form-hint">O endereço será preenchido automaticamente</span>
+                    </div>
+
+                    <!-- Endereço -->
+                    <div class="form-group">
+                        <label class="form-label required" for="endereco">Endereço</label>
+                        <input 
+                            type="text" 
+                            id="endereco" 
+                            name="endereco" 
+                            class="form-input"
+                            placeholder="Rua, Avenida, número"
+                            required
+                        >
+                    </div>
+
+                    <!-- Bairro -->
+                    <div class="form-group">
+                        <label class="form-label required" for="bairro">Bairro</label>
+                        <input 
+                            type="text" 
+                            id="bairro" 
+                            name="bairro" 
+                            class="form-input"
+                            placeholder="Nome do bairro"
+                            required
+                        >
+                    </div>
+
+                    <!-- Observações -->
+                    <div class="form-group">
+                        <label class="form-label" for="obs">Ponto de Referência</label>
+                        <textarea 
+                            id="obs" 
+                            name="obs" 
+                            class="form-textarea"
+                            placeholder="Ex: Próximo ao supermercado..."
+                        ></textarea>
+                        <span class="form-hint">Opcional - Ajuda nossos técnicos a localizar</span>
+                    </div>
+
+                    <!-- Honeypot (anti-spam) -->
+                    <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
+
+                    <!-- Botão de Envio -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-full">
+                            Finalizar Cadastro
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
-
-
-    <!-- Script para preencher a data automaticamente -->
-
+    <!-- JavaScript Moderno -->
+    <script src="shared/js/form-modern.js"></script>
     <script>
-
-        function formatarDataBrasileira(data) {
-
-            const dia = String(data.getDate()).padStart(2, '0');
-
-            const mes = String(data.getMonth() + 1).padStart(2, '0');
-
-            const ano = data.getFullYear();
-
-            return `${dia}/${mes}/${ano}`;
-
-        }
-
-
-
-        const dataAtual = new Date();
-
-        document.getElementById('dataCadastro').value = formatarDataBrasileira(dataAtual);
-
+        document.addEventListener('DOMContentLoaded', () => {
+            new FormValidator('cadastroForm');
+        });
     </script>
-
 </body>
-
 </html>
-
