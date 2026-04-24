@@ -21,7 +21,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
 COPY apps/web ./apps/web
 COPY packages ./packages
-RUN pnpm --filter @ideal/db exec prisma generate
+RUN pnpm --filter @ideal/db run db:generate
 ENV NEXT_TELEMETRY_DISABLED=1
 ARG DATABASE_URL=postgresql://ideal:local@127.0.0.1:5432/idealnet?schema=public
 ENV DATABASE_URL=$DATABASE_URL
