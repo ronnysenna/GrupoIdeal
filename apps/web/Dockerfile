@@ -17,13 +17,16 @@ COPY packages/db/prisma ./packages/db/prisma
 RUN pnpm install --frozen-lockfile
 
 FROM base AS builder
-COPY --from=deps /app/node_modules ./node_modules
-COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
+COPY pnpm-workspace.yaml package.json pnpm-lock.yaml turbo.json sites.config.json ./
 COPY apps/web ./apps/web
 COPY packages ./packages
-# O .dockerignore exclui node_modules; o `COPY` do contexto apaga o apps/web/node_modules do estágio `deps`. Repõe-o.
+# .dockerignore exclui node_modules do contexto — restaura node_modules do estágio `deps` (raiz + cada workspace).
+COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/apps/web/node_modules ./apps/web/node_modules
-# Prisma: gerado no estágio deps (postinstall).
+COPY --from=deps /app/packages/db/node_modules ./packages/db/node_modules
+COPY --from=deps /app/packages/ui/node_modules ./packages/ui/node_modules
+COPY --from=deps /app/packages/validators/node_modules ./packages/validators/node_modules
+COPY --from=deps /app/packages/emails/node_modules ./packages/emails/node_modules
 ENV NEXT_TELEMETRY_DISABLED=1
 ARG DATABASE_URL=postgresql://ideal:local@127.0.0.1:5432/idealnet?schema=public
 ENV DATABASE_URL=$DATABASE_URL
