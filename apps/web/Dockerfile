@@ -21,11 +21,14 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
 COPY apps/web ./apps/web
 COPY packages ./packages
-# Prisma: gerado no estágio deps (postinstall). Next: pnpm coloca o pacote em .pnpm, não use path fixo em node_modules.
+# O .dockerignore exclui node_modules; o `COPY` do contexto apaga o apps/web/node_modules do estágio `deps`. Repõe-o.
+COPY --from=deps /app/apps/web/node_modules ./apps/web/node_modules
+# Prisma: gerado no estágio deps (postinstall).
 ENV NEXT_TELEMETRY_DISABLED=1
 ARG DATABASE_URL=postgresql://ideal:local@127.0.0.1:5432/idealnet?schema=public
 ENV DATABASE_URL=$DATABASE_URL
-RUN node -e "const{createRequire}=require('module'),{execFileSync}=require('child_process'),p=createRequire('/app/apps/web/package.json').resolve('next/dist/bin/next');execFileSync(process.execPath,[p,'build'],{stdio:'inherit',cwd:'/app/apps/web'})"
+WORKDIR /app/apps/web
+RUN ./node_modules/.bin/next build
 
 FROM base AS runner
 WORKDIR /app
