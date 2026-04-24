@@ -12,6 +12,8 @@ COPY packages/validators/package.json packages/validators/
 COPY packages/emails/package.json packages/emails/
 COPY packages/ui/package.json packages/ui/
 COPY packages/config/package.json packages/config/
+# postinstall (db:generate) needs schema before prisma generate can run
+COPY packages/db/prisma ./packages/db/prisma
 RUN pnpm install --frozen-lockfile
 
 FROM base AS builder
