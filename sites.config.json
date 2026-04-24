@@ -16,7 +16,7 @@
     "teralink": {
       "label": "Teralink (Fortaleza)",
       "description": "Fibra e central do assinante.",
-      "href": "cidades/teralink/",
+      "href": "/teralink",
       "external": false,
       "contact": {
         "whatsappPhoneParam": "5585984330586",

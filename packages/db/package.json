@@ -1,0 +1,30 @@
+{
+  "name": "@ideal/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:studio": "prisma studio",
+    "dev": "echo \"skip\"",
+    "build": "prisma generate",
+    "lint": "echo \"skip\""
+  },
+  "dependencies": {
+    "@prisma/client": "^6.9.0",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "prisma": "^6.9.0",
+    "typescript": "^5.9.3"
+  }
+}

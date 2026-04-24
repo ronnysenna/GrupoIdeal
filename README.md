@@ -1,349 +1,87 @@
-# Ideal Soluções — Site do Grupo
+# Grupo Ideal — monorepo
 
-Site institucional modernizado do Grupo Ideal Soluções, unificando todas as marcas:
-- **Ideal NET**: Internet fibra e rádio (Palmácia, Pacoti, Ibicuitinga)
-- **Teralink**: Internet fibra em Fortaleza
-- **Ideal Rastreamento**: Rastreamento veicular
-- **Sistemas & Automação**: Desenvolvimento web, IA e automação
+Site e cadastros do **Grupo Ideal Soluções** (Ideal NET, Teralink, etc.): aplicação **Next.js 16** em `apps/web`, pacotes compartilhados em `packages/`, banco **PostgreSQL** (Prisma), e `docker-compose` na raiz (web, Postgres, pgAdmin) para **Coolify** / VPS.
 
----
+**Branch de migração:** trabalhe em `feat/nextjs-migration` (ou outra *feature*); após validação, faça *merge* para `main` e use essa branch no Coolify. Guia de deploy: [docs/COOLIFY.md](docs/COOLIFY.md).
 
-## 📊 Estrutura do Projeto
+Dados de conteúdo e cidades: [`sites.config.json`](sites.config.json) (importado no app).
+
+## Estrutura
 
 ```
-IdealNet/
-├── index.html                    # Hub principal do grupo
-├── home/                         # CSS e JS modernos
-│   ├── css/
-│   │   ├── hub.css              # Estilos do hub
-│   │   └── idealnet-unified.css # Estilos das páginas
-│   └── js/
-│       ├── idealnet-unified.js
-│       └── teralink.js
-├── cidades/
-│   ├── idealnet-unified.html    # Página unificada (3 cidades)
-│   ├── teralink/index.html      # Página Teralink
-│   └── {cidade}/
-│       ├── fale.php             # Endpoints de formulário
-│       ├── assine.php
-│       └── forms/               # Backend PHP (Composer)
-├── includes/
-│   └── idealnet-mail.php        # Handler de e-mails compartilhado
-├── sites.config.json            # Dados centralizados
-└── images/                      # Logos e imagens
+.
+├── apps/web/
+│   ├── public/
+│   │   └── images/         # todas as artes estáticas (logos, slides, parallax, patterns, etc.)
+│   └── src/
+│       ├── app/             # (site)/ = hub, teralink, [cidade], API, sitemap, robots, opengraph
+│       ├── content/         # cidades (tipos reexportados, alinhado ao plano)
+│       ├── components/      # site (Header, Footer, formulários)
+│       └── lib/             # cities, masks, mail, site-config, …
+├── packages/
+│   ├── db/                  # Prisma + schema PostgreSQL
+│   ├── validators/          # Zod (formulário de cadastro)
+│   ├── emails/              # React Email
+│   ├── config/ / ui/        # presets (evoluem conforme o projeto)
+├── docker-compose.yml
+├── pnpm-workspace.yaml
+└── sites.config.json
 ```
 
----
-
-## 🚀 Como Testar Localmente
-
-### Opção 1: PHP Built-in Server (Recomendado)
+## Testes
 
 ```bash
-php -S localhost:8000
-
-# Acesse:
-# http://localhost:8000/                                  → Hub
-# http://localhost:8000/cidades/idealnet-unified.html     → Ideal NET
-# http://localhost:8000/cidades/teralink/                 → Teralink
-# http://localhost:8000/cidades/teralink/forms/           → Formulário Cadastro (Modernizado)
+pnpm test                     # Vitest: @ideal/validators (cadastro, sites.config) + apps/web (máscaras, etc.)
+pnpm --filter web e2e         # Playwright (smoke, cadastro com mock, integração com Postgres se E2E_INTEGRATION=1)
 ```
 
-### Opção 2: Python (apenas para HTML estático)
+O conteúdo de **[`sites.config.json`](sites.config.json)** é validado em build por **Zod** (`siteConfigSchema` em `@ideal/validators`).
+
+**Open Graph / Twitter** — o Next gera `opengraph-image` e `twitter-image` (ver `apps/web/src/app/`) a partir de `og-default` (gradiente + título, 1200×630).
+
+## Desenvolvimento
 
 ```bash
-python3 -m http.server 8000
-# Nota: Formulários PHP não funcionarão com servidor Python
+pnpm install
+cp .env.example .env   # ajuste DATABASE_URL, SMTP, etc.
+
+# Subir só o Postgres (porta 5432 exposta)
+docker compose up -d postgres
+
+pnpm db:migrate:deploy
+pnpm dev                 # abre o app: http://localhost:3000
 ```
 
-### Instalar Dependências dos Formulários
+Rotas principais: `/` (hub), `/idealnet`, `/teralink`, `/palmacia`, `/pacoti`, `/ibicuitinga`, `/[cidade]/cadastro`, `/teralink/cadastro`. API: `POST /api/cadastro/[cidade]`, `GET /api/cep/[cep]`, `GET /api/health`.
+
+## Build e deploy
 
 ```bash
-# Execute o script de instalação
-./install-forms.sh
-
-# Ou manualmente
-cd cidades/teralink/forms && composer install
-cd ../palmacia/forms && composer install
-cd ../pacoti/forms && composer install
-cd ../ibicuitinga/forms && composer install
+pnpm build              # turborepo → build do Next
 ```
 
----
+**Docker:** `docker compose build` usa `apps/web/Dockerfile` (output `standalone`). Após o deploy, rode migração no ambiente: `pnpm db:migrate:deploy` (ou tarefa one-off no Coolify).
 
-## ✨ Novidades - Formulários Modernizados (v2.0)
+**SEO:** sitemap e robots (`/sitemap.xml`, `/robots.txt`); partilha social com `/opengraph-image` e `/twitter-image`.
 
-Os formulários de cadastro de todas as cidades foram completamente refatorados:
+**Coolify (checklist resumida):** repositório Git conectado; serviço com **build** a partir de `apps/web/Dockerfile` (contexto na **raiz** do monorepo; ver `docker-compose`); `DATABASE_URL` e segredos de e-mail; **variável** `NEXT_PUBLIC_SITE_URL` com o URL canónico; após o primeiro deploy, tarefa one-off (ou `release command`) com `pnpm db:migrate:deploy` contra a mesma base; mapear domínio, HTTPS e health em `/api/health`.
 
-### Frontend Moderno
-- ✅ **Design System**: Interface limpa e profissional sem Bootstrap
-- ✅ **Validação em Tempo Real**: Feedback instantâneo para o usuário
-- ✅ **Máscaras Automáticas**: CPF, telefone e CEP formatados
-- ✅ **Auto-completar**: CEP busca endereço via ViaCEP
-- ✅ **Loading States**: Indicadores visuais durante envio
-- ✅ **100% Responsivo**: Mobile-first design
+## Redirecionamentos (URLs antigas)
 
-### Backend Robusto
-- ✅ **Arquitetura OOP**: Classes organizadas e reutilizáveis
-- ✅ **Validações Duplas**: Frontend + Backend
-- ✅ **Sanitização Completa**: Proteção contra XSS e SQL Injection
-- ✅ **API RESTful**: Respostas padronizadas em JSON
-- ✅ **E-mail HTML**: Templates profissionais
-- ✅ **Anti-Spam**: Honeypot e validações de segurança
+Configuração em `apps/web/next.config.ts`: rotas legadas (`/cidades/...`, `/index.html`, formulários) e **URLs antigas de imagem** (`/img/...` → `/images/...`).
 
-### Banco (cadastros)
-- Schema de exemplo: `shared/database/schema.sql`
+## Segurança (cadastros)
 
-**Acesse os formulários modernizados:**
-- http://localhost:8000/cidades/teralink/forms/
-- http://localhost:8000/cidades/palmacia/forms/
-- http://localhost:8000/cidades/pacoti/forms/
-- http://localhost:8000/cidades/ibicuitinga/forms/
+O `POST /api/cadastro/[cidade]` aplica **rate limit** em memória (por IP + cidade), salvo se **Upstash** estiver configurado (`UPSTASH_REDIS_REST_URL` e `UPSTASH_REDIS_REST_TOKEN`), caso em que o limite é partilhado entre instâncias. Ajuste em `.env` (`RATE_LIMIT_CADASTRO_MAX`, `RATE_LIMIT_CADASTRO_WINDOW_MS`) ou defina `RATE_LIMIT_DISABLED=1` em dev.
 
----
+## Assets (imagens)
 
-## 📖 Páginas Ativas
+Tudo fica em **`apps/web/public/images/`** (uma pasta só). No código, use o caminho público, por exemplo `/images/logoGrupoIdeal.png`, `/images/logo.png` ou `/images/patterns/pattern1.png` (o que está em `public/` vira `/` na URL).
 
-### 1. Hub Principal (`/index.html`)
-Landing page do grupo com:
-- Cards das marcas (Ideal NET, Teralink, Rastreamento, Sistemas)
-- Formulário de lead integrado ao WhatsApp
-- Design moderno e responsivo
+## CI
 
-### 2. Ideal NET Unificada (`/cidades/idealnet-unified.html`)
-**Uma única página para 3 cidades** (Palmácia, Pacoti, Ibicuitinga):
-- Seletor de cidade no topo
-- Dados dinâmicos via `sites.config.json`
-- 3 tipos de planos (Fibra, Rádio, Empresarial)
-- FAQ interativo
-- Formulário → WhatsApp
+O workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) sobe **PostgreSQL**, aplica `prisma migrate deploy`, roda `lint`, `pnpm test` (Vitest em todos os pacotes com script `test`), `build` do `web` e **Playwright** (incluindo e2e de integração com a API e o banco). O *deploy* antigo **GitHub → Hostinger (PHP)** foi descontinuado; use **Coolify** para produção.
 
-**Acesso por cidade:**
-```
-?cidade=palmacia
-?cidade=pacoti
-?cidade=ibicuitinga
-```
+## Legado (PHP / HTML)
 
-### 3. Teralink (`/cidades/teralink/`)
-Página para Fortaleza:
-- 4 planos residenciais (50, 80, 100, 200 Mega)
-- Seção empresarial
-- FAQ interativo
-- Link para Central do Assinante
-
-**Contato:**
-- WhatsApp: (85) 98433-0586
-- Email: admteralink@gmail.com
-- Endereço: Av. Valparaiso, 1300 - Messejana - Fortaleza/CE
-
----
-
-## ⚙️ Deploy para Produção
-
-### 1. Instalar Dependências PHP
-
-```bash
-# Instalar Composer em cada pasta forms/
-cd cidades/palmacia/forms && composer install
-cd ../pacoti/forms && composer install
-cd ../ibicuitinga/forms && composer install
-cd ../teralink/forms && composer install
-```
-
-### 2. Configurar E-mails
-
-Criar `.env` em cada pasta `forms/`:
-
-```env
-MAIL_FROM=noreply@provedoridealnet.com
-MAIL_TO=atendimento@provedoridealnet.com
-MAIL_HOST=smtp.exemplo.com
-MAIL_PORT=587
-MAIL_USER=usuario@exemplo.com
-MAIL_PASS=senha_segura
-```
-
-### 3. Estrutura de Upload
-
-```
-Upload para servidor:
-├── index.html, index.php
-├── home/ (CSS e JS)
-├── cidades/ (páginas e backends)
-├── includes/
-├── sites.config.json
-├── images/, fonts/
-├── robots.txt, sitemap.xml
-└── .htaccess (se Apache)
-
-NÃO fazer upload:
-├── node_modules/
-├── vendor/ (gerar no servidor)
-├── .env (criar no servidor)
-└── .git/
-```
-
-### 4. Comandos no Servidor
-
-```bash
-# Gerar vendor/
-cd cidades/palmacia/forms && composer install --no-dev
-cd cidades/pacoti/forms && composer install --no-dev
-cd cidades/ibicuitinga/forms && composer install --no-dev
-cd cidades/teralink/forms && composer install --no-dev
-
-# Ajustar permissões (se necessário)
-chmod 755 cidades/*/forms
-chmod 644 cidades/*/*.php
-```
-
-### 5. Build Scripts (Opcional)
-
-```bash
-# Gerar sitemap.xml
-npm run sitemap
-
-# Build páginas legadas (se necessário)
-npm run build
-```
-
----
-
-## 🔧 Editar Dados
-
-### Contatos, Telefones, Endereços
-Edite `sites.config.json`:
-
-```json
-{
-  "cities": [
-    {
-      "id": "palmacia",
-      "titleCity": "Palmácia",
-      "whatsappPhoneParam": "5585992025109",
-      "email": "palmacia@provedoridealnet.com",
-      ...
-    }
-  ]
-}
-```
-
-### Preços dos Planos (Ideal NET)
-Edite `home/js/idealnet-unified.js`:
-
-```javascript
-const prices = {
-  palmacia: { 50: 79, 100: 99, 200: 129, 400: 179 },
-  pacoti: { 50: 79, 100: 99, 200: 129, 400: 179 },
-  ibicuitinga: { 50: 75, 100: 95, 200: 125, 400: 175 }
-};
-```
-
-### Planos Teralink
-Edite diretamente `cidades/teralink/index.html`.
-
----
-
-## 📈 Performance e Otimização
-
-### Antes da Modernização
-- CSS: ~700KB (Bootstrap, jQuery UI, etc.)
-- JS: ~550KB (jQuery, scripts legados)
-- HTML: 36+ páginas duplicadas
-
-### Depois da Modernização
-- CSS: ~50KB (93% menor)
-- JS: ~15KB (97% menor)
-- HTML: 2 páginas unificadas
-
-**Resultado:** Site ~80% menor, muito mais rápido e fácil de manter.
-
----
-
-## 🛠️ Tecnologias
-
-### Frontend
-- HTML5 semântico
-- CSS3 (Grid, Flexbox, Custom Properties)
-- JavaScript Vanilla ES6+ (sem jQuery)
-- Google Fonts (Inter)
-
-### Backend
-- PHP 7.4+
-- Composer
-- PHPMailer
-- phpdotenv
-
-### Build
-- Node.js (scripts auxiliares)
-
-### Requisitos do Servidor
-- PHP 7.4+
-- Composer
-- Suporte .htaccess (Apache) ou nginx
-- HTTPS recomendado
-
----
-
-## 📝 Manutenção
-
-### Atualizar Dados de uma Cidade
-1. Edite `sites.config.json`
-2. Recarregue a página (dados carregados via JavaScript)
-
-### Adicionar Nova Cidade
-1. Adicione entrada em `sites.config.json`
-2. Crie pasta `cidades/{cidade}/` com `fale.php`, `assine.php`, `forms/`
-3. Configure Composer e `.env` na pasta `forms/`
-
-### Criar Formulário Novo
-Use o modelo em `includes/idealnet-mail.php` como referência.
-
----
-
-## 🔐 Segurança
-
-- ✅ Vendor/ não está no Git (`.gitignore`)
-- ✅ .env não está no Git
-- ✅ Honeypot implementado nos formulários
-- ✅ Sanitização de inputs
-- ✅ rel="noopener noreferrer" em links externos
-- ✅ HTTPS recomendado para produção
-
----
-
-## 🐛 Troubleshooting
-
-### Formulários não enviam e-mail
-- Verifique configuração `.env`
-- Teste credenciais SMTP
-- Verifique logs do servidor PHP
-
-### Página não carrega dados da cidade
-- Verifique se `sites.config.json` existe
-- Abra DevTools → Console para erros
-- Verifique se JavaScript está carregando
-
-### CSS/JS não carrega
-- Verifique caminhos relativos
-- Limpe cache do navegador
-- Verifique permissões dos arquivos
-
----
-
-## 📞 Suporte
-
-**Grupo Ideal Soluções**
-- WhatsApp: (85) 99190-4540
-- Email: contato@idealsolucoes.com.br
-
----
-
-## 📜 Licença e Histórico
-
-**Projeto:** Site Grupo Ideal Soluções  
-**Versão:** 2.0 (Modernizado)  
-**Status:** Produção
-
-**Histórico resumido:** modernização do hub, páginas unificadas, formulários de cadastro com assets em `shared/`.
+Se ainda existirem pastas `cidades/*`, `shared/` (PHP) ou ficheiros HTML estáticos antigos, são cobertos por **redirects** no Next (`next.config.ts`) até remoção. **Neste clone não há ficheiros PHP** — a remoção pode ser dada por concluída quando o repositório remoto também estiver limpo.

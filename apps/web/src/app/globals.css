@@ -1,0 +1,35 @@
+@import "tailwindcss";
+@source "../../../../packages/ui/src/**/*.tsx";
+
+/* Marca: hub escuro, Ideal NET (slate) e Teralink (azul) */
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --ideal-hub-bg: #0a0f1e;
+  --ideal-hub-foreground: #f4f4f5;
+  --ideal-hub-muted: #a1a1aa;
+  --ideal-hub-accent: #3b82f6;
+  --ideal-hub-gradient-from: #60a5fa;
+  --ideal-net-surface: #f8fafc;
+  --ideal-net-border: #e2e8f0;
+  --teralink-accent: #2563eb;
+  --teralink-surface: #fafafa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ideal-hub: var(--ideal-hub-bg);
+  --color-ideal-hub-fg: var(--ideal-hub-foreground);
+  --color-ideal-hub-muted: var(--ideal-hub-muted);
+  --color-brand: var(--ideal-hub-accent);
+  --color-teralink: var(--teralink-accent);
+  --color-ideal-net-surface: var(--ideal-net-surface);
+  --font-sans: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+}

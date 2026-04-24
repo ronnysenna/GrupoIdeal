@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main, feat/**]
+  pull_request:
+    branches: [main, feat/**]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: ideal
+          POSTGRES_PASSWORD: ideal
+          POSTGRES_DB: idealnet
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ideal -d idealnet"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: pnpm
+      - name: Install
+        run: pnpm install --frozen-lockfile
+        env:
+          # Prisma generate (postinstall) não conecta ao banco; URL dummy evita vazio
+          DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/ci?schema=public
+      - name: Prisma migrate (CI Postgres)
+        run: pnpm --filter @ideal/db exec prisma migrate deploy
+        env:
+          DATABASE_URL: postgresql://ideal:ideal@127.0.0.1:5432/idealnet?schema=public
+      - name: Lint
+        run: pnpm --filter web lint
+      - name: Test (Vitest)
+        run: pnpm test
+      - name: Build
+        run: pnpm --filter web build
+        env:
+          DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/ci?schema=public
+          NEXT_TELEMETRY_DISABLED: "1"
+      - name: Docker build (imagem web)
+        run: docker compose build web
+      - name: E2E (Playwright)
+        run: pnpm --filter web exec playwright install --with-deps chromium && pnpm --filter web e2e
+        env:
+          CI: "true"
+          E2E_INTEGRATION: "1"
+          DATABASE_URL: postgresql://ideal:ideal@127.0.0.1:5432/idealnet?schema=public
+          NEXT_TELEMETRY_DISABLED: "1"

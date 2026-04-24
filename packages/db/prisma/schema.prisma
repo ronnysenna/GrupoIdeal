@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum City {
+  TERALINK
+  PALMACIA
+  PACOTI
+  IBICUITINGA
+}
+
+model Cadastro {
+  id        Int      @id @default(autoincrement())
+  city      City
+  nome      String
+  email     String
+  cpf       String
+  rg        String
+  fone1     String
+  fone2     String?
+  nasc      DateTime @db.Date
+  plano     String
+  venc      String
+  cep       String
+  endereco  String
+  bairro    String
+  obs       String?  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([city, cpf])
+  @@index([city, createdAt])
+  @@index([email])
+}
+
+model CadastroLog {
+  id         Int      @id @default(autoincrement())
+  city       String?
+  payload    String?  @db.Text
+  error      String?  @db.Text
+  ip         String?  @db.VarChar(45)
+  userAgent  String?  @db.Text
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+}
