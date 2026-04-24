@@ -21,11 +21,11 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
 COPY apps/web ./apps/web
 COPY packages ./packages
-# Prisma: gerado no estágio deps (postinstall); recriar aqui falha (pnpm sem .bin em packages/db).
+# Prisma: gerado no estágio deps (postinstall). `run build` aqui não acha `next`; `exec` usa o .bin do workspace.
 ENV NEXT_TELEMETRY_DISABLED=1
 ARG DATABASE_URL=postgresql://ideal:local@127.0.0.1:5432/idealnet?schema=public
 ENV DATABASE_URL=$DATABASE_URL
-RUN pnpm --filter web build
+RUN pnpm --filter web exec -- next build
 
 FROM base AS runner
 WORKDIR /app
