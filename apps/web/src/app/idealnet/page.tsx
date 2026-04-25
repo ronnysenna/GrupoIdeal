@@ -1,42 +1,50 @@
-import Image from "next/image";
-import Link from "next/link";
-import { sites } from "@/lib/site-config";
+import { Suspense } from "react";
+import { IdealNetView } from "@/components/idealnet/IdealNetView";
+import {
+  isIdealNetCityId,
+  sites,
+  type IdealNetCityId,
+} from "@/lib/site-config";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Ideal NET — Internet em Palmácia, Pacoti e Ibicuitinga",
-  description: "Internet fibra e rádio com suporte local. Escolha sua cidade e veja planos e cadastro.",
+const DESC =
+  "Ideal NET: fibra óptica, rádio e planos empresariais em Palmácia, Pacoti e Ibicuitinga. Escolha a cidade, compare preços e fale com a unidade no WhatsApp.";
+
+export const metadata: Metadata = {
+  title: "Ideal NET — Internet de fibra e rádio no Ceará",
+  description: DESC,
+  openGraph: {
+    title: "Ideal NET — Internet de fibra e rádio",
+    description: DESC,
+    type: "website",
+  },
+  alternates: {
+    canonical: "/idealnet",
+  },
 };
 
-export default function IdealNetPage() {
+type PageProps = {
+  searchParams: Promise<{ cidade?: string }>;
+};
+
+function IdealNetFallback() {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
-          <Link href="/">
-            <Image src="/images/logoGrupoIdeal.png" alt="Ideal NET" width={180} height={56} className="h-10 w-auto" />
-          </Link>
-          <Link href="/" className="text-sm text-blue-600 hover:underline">
-            Início
-          </Link>
-        </div>
-      </header>
-      <section className="mx-auto max-w-4xl px-4 py-12 text-center sm:px-6">
-        <h1 className="text-3xl font-bold">Internet de alta velocidade</h1>
-        <p className="mt-2 text-slate-600">Selecione sua cidade Ideal NET</p>
-        <ul className="mt-8 grid gap-4 sm:grid-cols-3">
-          {sites.cities.map((c) => (
-            <li key={c.id}>
-              <Link
-                href={`/${c.id}`}
-                className="block rounded-2xl border border-slate-200 bg-white p-6 text-lg font-semibold shadow-sm transition hover:border-blue-400 hover:shadow"
-              >
-                {c.titleCity}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-8 text-sm text-slate-500">Fibra (sede) e rádio em localidades — planos no cadastro.</p>
-      </section>
+    <div className="min-h-screen bg-ideal-hub">
+      <div className="mx-auto max-w-5xl px-4 py-16 text-center text-zinc-500">Carregando…</div>
     </div>
+  );
+}
+
+export default async function IdealNetPage({ searchParams }: PageProps) {
+  const sp = await searchParams;
+  const raw = sp.cidade;
+  const initialCityId: IdealNetCityId = isIdealNetCityId(raw ?? "")
+    ? (raw as IdealNetCityId)
+    : "palmacia";
+
+  return (
+    <Suspense fallback={<IdealNetFallback />}>
+      <IdealNetView cities={sites.cities} initialCityId={initialCityId} />
+    </Suspense>
   );
 }

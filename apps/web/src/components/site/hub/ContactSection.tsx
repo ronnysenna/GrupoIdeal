@@ -114,11 +114,11 @@ export function ContactSection() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="rounded-2xl bg-white p-5 text-zinc-900 sm:p-7">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-zinc-100 ring-1 ring-white/5 sm:p-7">
               <div
                 role="tablist"
                 aria-label="Tipo de mensagem"
-                className="mb-5 inline-flex rounded-full bg-zinc-100 p-1 text-sm font-medium"
+                className="mb-5 inline-flex rounded-full border border-white/10 bg-white/[0.06] p-1 text-sm font-medium"
               >
                 <button
                   type="button"
@@ -128,8 +128,8 @@ export function ContactSection() {
                   className={[
                     "rounded-full px-4 py-2 transition",
                     tab === "contato"
-                      ? "bg-white text-zinc-900 shadow-sm"
-                      : "text-zinc-500 hover:text-zinc-900",
+                      ? "bg-white/15 text-white shadow-sm ring-1 ring-white/10"
+                      : "text-zinc-400 hover:text-zinc-200",
                   ].join(" ")}
                 >
                   Contato
@@ -142,8 +142,8 @@ export function ContactSection() {
                   className={[
                     "rounded-full px-4 py-2 transition",
                     tab === "feedback"
-                      ? "bg-white text-zinc-900 shadow-sm"
-                      : "text-zinc-500 hover:text-zinc-900",
+                      ? "bg-white/15 text-white shadow-sm ring-1 ring-white/10"
+                      : "text-zinc-400 hover:text-zinc-200",
                   ].join(" ")}
                 >
                   Feedback
@@ -152,8 +152,10 @@ export function ContactSection() {
 
               {tab === "contato" ? (
                 <div role="tabpanel">
-                  <h3 className="text-lg font-semibold">Solicite um orçamento</h3>
-                  <p className="mt-1 text-sm text-zinc-600">
+                  <h3 className="text-lg font-semibold text-white">
+                    Solicite um orçamento
+                  </h3>
+                  <p className="mt-1 text-sm text-zinc-400">
                     Conte um pouco do que você precisa e retornamos em breve.
                   </p>
                   <div className="mt-4">
@@ -162,8 +164,8 @@ export function ContactSection() {
                 </div>
               ) : (
                 <div role="tabpanel">
-                  <h3 className="text-lg font-semibold">Conte como foi</h3>
-                  <p className="mt-1 text-sm text-zinc-600">
+                  <h3 className="text-lg font-semibold text-white">Conte como foi</h3>
+                  <p className="mt-1 text-sm text-zinc-400">
                     Sua opinião nos ajuda a melhorar todos os dias.
                   </p>
                   <div className="mt-4">

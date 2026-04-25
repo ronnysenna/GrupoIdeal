@@ -1,7 +1,16 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Button, Input, Label, Textarea, SelectField, toast } from "@ideal/ui";
+import {
+  Button,
+  cn,
+  Input,
+  Label,
+  SelectField,
+  Textarea,
+  toast,
+} from "@ideal/ui";
+import { darkFormField, darkFormLabel, darkFormMuted } from "@/lib/dark-form-ui";
 
 const WA = "5585991904540";
 
@@ -30,7 +39,7 @@ ${data.mensagem ? `\n*Mensagem:* ${data.mensagem}` : ""}`;
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       <div>
-        <Label htmlFor="hub-nome" className="mb-1 block" required>
+        <Label htmlFor="hub-nome" className={cn("mb-1 block", darkFormLabel)} required>
           Nome completo
         </Label>
         <Input
@@ -38,11 +47,12 @@ ${data.mensagem ? `\n*Mensagem:* ${data.mensagem}` : ""}`;
           name="nome"
           required
           placeholder="Seu nome"
+          className={darkFormField}
         />
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <Label htmlFor="hub-email" className="mb-1 block" required>
+          <Label htmlFor="hub-email" className={cn("mb-1 block", darkFormLabel)} required>
             E-mail
           </Label>
           <Input
@@ -51,10 +61,11 @@ ${data.mensagem ? `\n*Mensagem:* ${data.mensagem}` : ""}`;
             type="email"
             required
             placeholder="seu@email.com"
+            className={darkFormField}
           />
         </div>
         <div>
-          <Label htmlFor="hub-telefone" className="mb-1 block" required>
+          <Label htmlFor="hub-telefone" className={cn("mb-1 block", darkFormLabel)} required>
             Telefone
           </Label>
           <Input
@@ -62,14 +73,21 @@ ${data.mensagem ? `\n*Mensagem:* ${data.mensagem}` : ""}`;
             name="telefone"
             required
             placeholder="(85) 9 9999-9999"
+            className={darkFormField}
           />
         </div>
       </div>
       <div>
-        <Label htmlFor="hub-servico" className="mb-1 block" required>
+        <Label htmlFor="hub-servico" className={cn("mb-1 block", darkFormLabel)} required>
           Serviço de interesse
         </Label>
-        <SelectField id="hub-servico" name="servico" required defaultValue="">
+        <SelectField
+          id="hub-servico"
+          name="servico"
+          required
+          defaultValue=""
+          className={darkFormField}
+        >
           <option value="" disabled>
             Selecione
           </option>
@@ -81,19 +99,21 @@ ${data.mensagem ? `\n*Mensagem:* ${data.mensagem}` : ""}`;
         </SelectField>
       </div>
       <div>
-        <Label htmlFor="hub-mensagem" className="mb-1 block">
+        <Label htmlFor="hub-mensagem" className={cn("mb-1 block", darkFormLabel)}>
           Mensagem (opcional)
         </Label>
-        <Textarea id="hub-mensagem" name="mensagem" rows={3} />
+        <Textarea id="hub-mensagem" name="mensagem" rows={3} className={darkFormField} />
       </div>
       <Button
         type="submit"
-        className="w-full rounded-xl py-3 text-sm font-semibold"
+        className="w-full rounded-xl py-3 text-sm font-semibold shadow-lg shadow-blue-900/30"
         disabled={sending}
       >
         Enviar solicitação
       </Button>
-      <p className="text-center text-xs text-zinc-500">Você será redirecionado ao WhatsApp.</p>
+      <p className={cn("text-center text-xs", darkFormMuted)}>
+        Você será redirecionado ao WhatsApp.
+      </p>
     </form>
   );
 }
