@@ -23,7 +23,7 @@ export const TERALINK_RESIDENTIAL_PLANS: TeralinkResidentialPlan[] = [
   {
     id: "p50",
     name: "50 Mega",
-    priceMain: "49",
+    priceMain: "54",
     priceRest: ",90/mês",
     download: "50 Mbps",
     upload: "25 Mbps",
@@ -163,7 +163,7 @@ export const TERALINK_FAQ: { q: string; a: string }[] = [
 
 /** Opções do select do formulário (valores alinhados ao legado) */
 export const TERALINK_LEAD_PLAN_OPTIONS: { value: string; label: string }[] = [
-  { value: "50 Mega", label: "50 Mega — R$ 49,90" },
+  { value: "50 Mega", label: "50 Mega — R$ 54,90" },
   { value: "80 Mega", label: "80 Mega — R$ 79,90" },
   { value: "100 Mega", label: "100 Mega — R$ 89,90" },
   { value: "200 Mega", label: "200 Mega — R$ 99,90" },

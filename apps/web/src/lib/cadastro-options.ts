@@ -11,7 +11,7 @@ const idealNetPlanOptions = [
 ];
 
 const teralinkPlanOptions = [
-  { value: "50MB", label: "50 Mega - R$ 49,90" },
+  { value: "50MB", label: "50 Mega - R$ 54,90" },
   { value: "80MB", label: "80 Mega - R$ 79,90" },
   { value: "100MB", label: "100 Mega - R$ 89,90" },
   { value: "200MB", label: "200 Mega - R$ 99,90" },

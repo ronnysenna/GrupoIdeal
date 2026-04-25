@@ -39,10 +39,13 @@ export const HUB_EMAIL = "contato@idealsolucoes.com.br";
 export const RASTREAMENTO_PHONE_DISPLAY = "(85) 4042-0510";
 export const RASTREAMENTO_PHONE_TEL = "+558540420510";
 export const RASTREAMENTO_EMAIL = "rastro@gmail.com";
-export const RASTREAMENTO_ADDRESS = "Av. Valparaíso, 1300 - Autos";
-export const RASTREAMENTO_URL = "https://rastro.idealsolucoes.tec";
-/** Mesmo número do rastreamento: link direto de WhatsApp (sem o `+` do E.164). */
+/** Endereço comercial (material de campanha). */
+export const RASTREAMENTO_ADDRESS =
+  "Av. A, 1300 - LJ2 - Sítio São João - Fortaleza/CE";
+export const RASTREAMENTO_URL = "/rastreamento";
+/** Telefone e WhatsApp: mesmo ramal (fixo com WhatsApp Business). E.164 sem +. */
 export const RASTREAMENTO_WHATSAPP_PARAM = "558540420510";
+export const RASTREAMENTO_WHATSAPP_DISPLAY = RASTREAMENTO_PHONE_DISPLAY;
 
 /** Filiais da Ideal NET — e-mail, endereço e WhatsApp oficiais por cidade. */
 export type IdealNetFilialId = "palmacia" | "pacoti" | "ibicuitinga";
@@ -118,7 +121,7 @@ export const HUB_BRANDS: HubBrand[] = [
     shortName: "Teralink",
     tagline: "Internet residencial e empresarial em Fortaleza",
     description:
-      "Fibra dedicada na capital cearense, com planos a partir de R$ 49,90 e suporte local.",
+      "Fibra dedicada na capital cearense, com planos a partir de R$ 54,90 e suporte local.",
     badge: "Fortaleza · CE",
     href: "/teralink",
     external: false,
@@ -142,7 +145,7 @@ export const HUB_BRANDS: HubBrand[] = [
       "Rastreio em tempo real, telemetria, alertas inteligentes e bloqueio remoto para frotas e veículos particulares.",
     badge: "Atendimento BR",
     href: RASTREAMENTO_URL,
-    external: true,
+    external: false,
     cta: "Proteger meu veículo",
     accent: {
       text: "text-amber-200",

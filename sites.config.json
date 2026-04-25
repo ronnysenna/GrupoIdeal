@@ -10,8 +10,8 @@
     "idealRastreamento": {
       "label": "Ideal Rastreamento",
       "description": "Soluções em rastreamento e monitoramento.",
-      "href": "https://www.idealsolucoes.com.br",
-      "external": true
+      "href": "/rastreamento",
+      "external": false
     },
     "teralink": {
       "label": "Teralink (Fortaleza)",
@@ -19,14 +19,14 @@
       "href": "/teralink",
       "external": false,
       "contact": {
-        "whatsappPhoneParam": "5585984330586",
-        "whatsappDisplay": "(85) 98433-0586",
+        "whatsappPhoneParam": "558540420510",
+        "whatsappDisplay": "(85) 4042-0510",
         "email": "admteralink@gmail.com",
         "address": "Av. Valparaiso, 1300 - Autos - Messejana - Fortaleza/CE",
         "centralUrl": "https://central.teralinkfibra.com.br/central/login.hhvm"
       },
       "plans": [
-        { "speed": "50", "price": "49,90" },
+        { "speed": "50", "price": "54,90" },
         { "speed": "80", "price": "79,90" },
         { "speed": "100", "price": "89,90" },
         { "speed": "200", "price": "99,90" }

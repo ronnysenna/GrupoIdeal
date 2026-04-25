@@ -563,6 +563,12 @@ export function IdealNetView({ cities, initialCityId }: Props) {
                 <Link href="/teralink" className="mt-1 block text-zinc-400 transition hover:text-white">
                   Teralink Fortaleza
                 </Link>
+                <Link
+                  href="/rastreamento"
+                  className="mt-1 block text-zinc-400 transition hover:text-white"
+                >
+                  Ideal Rastreamento
+                </Link>
               </div>
             </div>
           </div>

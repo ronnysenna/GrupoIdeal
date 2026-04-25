@@ -4,7 +4,7 @@ import { getTeralink } from "@/lib/site-config";
 
 const title = "Teralink Fibra — Internet de Alta Velocidade em Fortaleza";
 const description =
-  "Internet fibra óptica em Fortaleza e região. Planos residenciais a partir de R$ 49,90. Velocidade garantida e suporte local.";
+  "Internet fibra óptica em Fortaleza e região. Planos residenciais a partir de R$ 54,90. Velocidade garantida e suporte local.";
 
 export const metadata: Metadata = {
   title,

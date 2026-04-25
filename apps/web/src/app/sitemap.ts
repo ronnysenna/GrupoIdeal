@@ -4,10 +4,12 @@ import { idealNetCityIds } from "@/lib/site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastmod = new Date();
-  const fixed = ["/", "/idealnet", "/teralink", "/teralink/cadastro"].map((path) => ({
-    url: canonicalUrl(path),
-    lastModified: lastmod,
-  }));
+  const fixed = ["/", "/idealnet", "/teralink", "/teralink/cadastro", "/rastreamento"].map(
+    (path) => ({
+      url: canonicalUrl(path),
+      lastModified: lastmod,
+    }),
+  );
   const cities: MetadataRoute.Sitemap = idealNetCityIds.flatMap((id) => {
     return [
       { url: canonicalUrl(`/${id}`), lastModified: lastmod },

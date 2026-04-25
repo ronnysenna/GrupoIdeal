@@ -8,7 +8,7 @@ import {
   IDEAL_NET_FILIAIS,
   RASTREAMENTO_ADDRESS,
   RASTREAMENTO_EMAIL,
-  RASTREAMENTO_PHONE_DISPLAY,
+  RASTREAMENTO_WHATSAPP_DISPLAY,
   RASTREAMENTO_WHATSAPP_PARAM,
 } from "@/content/hub";
 import { buildWhatsAppUrl, getTeralink, telHref } from "@/lib/site-config";
@@ -242,7 +242,7 @@ export function SiteFooter({ variant }: FooterProps) {
                   rel="noopener noreferrer"
                   className="text-sm text-emerald-300 hover:text-emerald-200"
                 >
-                  WhatsApp {RASTREAMENTO_PHONE_DISPLAY}
+                  WhatsApp {RASTREAMENTO_WHATSAPP_DISPLAY}
                 </a>
               </p>
             </li>
