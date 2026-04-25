@@ -165,8 +165,8 @@ export const HUB_BRANDS: HubBrand[] = [
     description:
       "Desenvolvimento sob medida: sites, plataformas web, integrações e agentes de IA para automatizar o seu negócio.",
     badge: "Mais procurado",
-    href: "https://www.idealsolucoes.com.br",
-    external: true,
+    href: "/solucoes-digitais",
+    external: false,
     cta: "Solicitar orçamento",
     accent: {
       text: "text-violet-200",

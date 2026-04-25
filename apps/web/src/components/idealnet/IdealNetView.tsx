@@ -569,6 +569,12 @@ export function IdealNetView({ cities, initialCityId }: Props) {
                 >
                   Ideal Rastreamento
                 </Link>
+                <Link
+                  href="/solucoes-digitais"
+                  className="mt-1 block text-zinc-400 transition hover:text-white"
+                >
+                  Soluções Digitais
+                </Link>
               </div>
             </div>
           </div>

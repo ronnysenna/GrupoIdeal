@@ -93,7 +93,7 @@ ${data.mensagem ? `\n*Mensagem:* ${data.mensagem}` : ""}`;
           </option>
           <option value="internet">Internet de alta velocidade</option>
           <option value="teralink">Teralink Fibra (Fortaleza)</option>
-          <option value="desenvolvimento">Desenvolvimento e IA</option>
+          <option value="desenvolvimento">Ideal Soluções Digitais (sites, sistemas, IA)</option>
           <option value="rastreamento">Rastreamento veicular</option>
           <option value="outro">Outro</option>
         </SelectField>
