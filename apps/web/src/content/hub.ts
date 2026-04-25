@@ -47,7 +47,7 @@ export const RASTREAMENTO_URL = "/rastreamento";
 export const RASTREAMENTO_WHATSAPP_PARAM = "558540420510";
 export const RASTREAMENTO_WHATSAPP_DISPLAY = RASTREAMENTO_PHONE_DISPLAY;
 
-/** Filiais da Ideal NET — e-mail, endereço e WhatsApp oficiais por cidade. */
+/** Filiais da Ideal Net — e-mail, endereço e WhatsApp oficiais por cidade. */
 export type IdealNetFilialId = "palmacia" | "pacoti" | "ibicuitinga";
 
 export type IdealNetFilialContact = {
@@ -96,8 +96,8 @@ export function getIdealNetFilialByCityName(
 export const HUB_BRANDS: HubBrand[] = [
   {
     id: "idealnet",
-    name: "Ideal NET",
-    shortName: "Ideal NET",
+    name: "Ideal Net",
+    shortName: "Ideal Net",
     tagline: "Internet de fibra para o interior do Ceará",
     description:
       "Provedor regional com fibra óptica e atendimento próximo em Palmácia, Pacoti e Ibicuitinga.",
@@ -225,7 +225,7 @@ export const HUB_COVERAGE: HubCity[] = [
     name: "Palmácia",
     state: "CE",
     brand: "idealnet",
-    description: "Sede do maciço de Baturité da Ideal NET.",
+    description: "Sede do maciço de Baturité da Ideal Net.",
   },
   {
     name: "Pacoti",
@@ -258,11 +258,11 @@ export type HubFaq = { q: string; a: string };
 export const HUB_FAQ: HubFaq[] = [
   {
     q: "O que é o Grupo Ideal?",
-    a: "Somos um grupo de tecnologia com quatro frentes: provedores de internet (Ideal NET e Teralink), monitoramento veicular (Ideal Rastreamento) e desenvolvimento de software com IA (Ideal Soluções Digitais).",
+    a: "Somos um grupo de tecnologia com quatro frentes: provedores de internet (Ideal Net e Teralink), monitoramento veicular (Ideal Rastreamento) e desenvolvimento de software com IA (Ideal Soluções Digitais).",
   },
   {
     q: "Em quais cidades vocês oferecem internet?",
-    a: "A Ideal NET atende Palmácia, Pacoti e Ibicuitinga (CE) com fibra óptica. Em Fortaleza atuamos com a marca Teralink Fibra. Para outras regiões, fale com a gente que avaliamos a expansão.",
+    a: "A Ideal Net atende Palmácia, Pacoti e Ibicuitinga (CE) com fibra óptica. Em Fortaleza atuamos com a marca Teralink Fibra. Para outras regiões, fale com a gente que avaliamos a expansão.",
   },
   {
     q: "O rastreamento veicular funciona em todo o Brasil?",
@@ -297,7 +297,7 @@ export type HubTestimonial = {
 export const HUB_TESTIMONIALS: HubTestimonial[] = [
   {
     quote:
-      "Migrei pra Ideal NET e a estabilidade da fibra mudou o jeito que eu trabalho de casa. Suporte responde rápido e resolve.",
+      "Migrei pra Ideal Net e a estabilidade da fibra mudou o jeito que eu trabalho de casa. Suporte responde rápido e resolve.",
     author: "Marina A.",
     role: "Designer · Palmácia",
     brand: "idealnet",

@@ -8,7 +8,7 @@ const BRAND_TEXT: Record<string, string> = {
   rastreamento: "text-amber-200",
 };
 const BRAND_LABEL: Record<string, string> = {
-  idealnet: "Ideal NET",
+  idealnet: "Ideal Net",
   teralink: "Teralink",
   rastreamento: "Rastreamento",
 };

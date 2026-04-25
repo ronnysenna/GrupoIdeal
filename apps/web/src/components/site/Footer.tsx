@@ -141,7 +141,7 @@ export function SiteFooter({ variant }: FooterProps) {
         <div>
           <p className="text-base font-semibold text-white">Onde estamos</p>
           <ul className="mt-4 space-y-2 text-zinc-300">
-            <li>Interior do CE: Palmácia, Pacoti, Ibicuitinga (Ideal NET)</li>
+            <li>Interior do CE: Palmácia, Pacoti, Ibicuitinga (Ideal Net)</li>
             <li>Fortaleza – CE (Teralink Fibra)</li>
             <li>{RASTREAMENTO_ADDRESS} (Ideal Rastreamento)</li>
             <li>Atendimento nacional (rastreamento e soluções digitais)</li>
@@ -155,7 +155,7 @@ export function SiteFooter({ variant }: FooterProps) {
             Filiais e unidades — contatos
           </p>
           <p className="mt-1 text-xs text-zinc-500">
-            WhatsApp, e-mail e endereço. Mesmo padrão para Ideal NET, Teralink e
+            WhatsApp, e-mail e endereço. Mesmo padrão para Ideal Net, Teralink e
             Rastreamento.
           </p>
           <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -15,7 +15,7 @@ import { TestimonialsSection } from "@/components/site/hub/TestimonialsSection";
 import { getPublicSiteUrl } from "@/lib/hub-seo";
 
 const HUB_DESC =
-  "Hub oficial do Grupo Ideal: Ideal NET (Palmácia, Pacoti, Ibicuitinga), Teralink Fibra em Fortaleza, rastreamento veicular nacional e Ideal Soluções Digitais (sites, sistemas e IA).";
+  "Hub oficial do Grupo Ideal: Ideal Net (Palmácia, Pacoti, Ibicuitinga), Teralink Fibra em Fortaleza, rastreamento veicular nacional e Ideal Soluções Digitais (sites, sistemas e IA).";
 
 export const metadata: Metadata = {
   title: "Grupo Ideal — internet, rastreamento e tecnologia (CE e Brasil)",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   keywords: [
     "Grupo Ideal",
     "Ideal Soluções",
-    "Ideal NET",
+    "Ideal Net",
     "Teralink",
     "Teralink Fibra",
     "Fortaleza",

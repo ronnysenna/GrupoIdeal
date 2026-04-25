@@ -4,7 +4,7 @@ import { ArrowRightIcon, WhatsAppIcon } from "./icons";
 import { Reveal } from "./Reveal";
 
 const STATS = [
-  { n: "5+", t: "Anos de operação" },
+  { n: "10+", t: "Anos de operação" },
   { n: "4", t: "Empresas no grupo" },
   { n: "4+", t: "Cidades atendidas" },
   { n: "24/7", t: "Suporte humano" },

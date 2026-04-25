@@ -73,12 +73,12 @@ export function IdealNetView({ cities, initialCityId }: Props) {
 
   const waHero = buildWhatsAppUrl({
     phone: city.whatsappPhoneParam,
-    message: `Olá! Ideal NET ${city.titleCity} — quero falar com um vendedor.`,
+    message: `Olá! Ideal Net ${city.titleCity} — quero falar com um vendedor.`,
   });
 
   const waFloat = buildWhatsAppUrl({
     phone: city.whatsappPhoneParam,
-    message: `Olá! Falo de ${city.titleCity} (Ideal NET).`,
+    message: `Olá! Falo de ${city.titleCity} (Ideal Net).`,
   });
 
   return (
@@ -93,7 +93,7 @@ export function IdealNetView({ cities, initialCityId }: Props) {
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo.png"
-              alt="Ideal NET"
+              alt="Ideal Net"
               width={780}
               height={80}
               className="h-10 w-auto max-w-full object-contain object-left sm:h-12"
@@ -365,7 +365,7 @@ export function IdealNetView({ cities, initialCityId }: Props) {
           <div className="grid gap-10 lg:grid-cols-2">
             <div>
               <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                Ideal NET <span className="text-cyan-300">{city.titleCity}</span>
+                Ideal Net <span className="text-cyan-300">{city.titleCity}</span>
               </h2>
               <p className="mt-4 text-zinc-400">
                 Há anos levando internet de qualidade à região. Nosso foco é conectar
@@ -515,7 +515,7 @@ export function IdealNetView({ cities, initialCityId }: Props) {
             <div>
               <Image
                 src="/images/logo.png"
-                alt="Ideal NET"
+                alt="Ideal Net"
                 width={780}
                 height={80}
                 className="h-9 w-auto max-w-full object-contain object-left opacity-95 sm:h-10"
@@ -579,7 +579,7 @@ export function IdealNetView({ cities, initialCityId }: Props) {
             </div>
           </div>
           <p className="mt-8 border-t border-white/10 pt-6 text-center text-xs text-zinc-500">
-            © {new Date().getFullYear()} Ideal NET. Todos os direitos reservados.
+            © {new Date().getFullYear()} Ideal Net. Todos os direitos reservados.
           </p>
         </div>
       </footer>

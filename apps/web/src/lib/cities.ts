@@ -3,7 +3,7 @@ import { getIdealNetCity, getTeralink, idealNetCityIds, isIdealNetCityId, sites 
 
 const base = () => process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
-/** Slugs de cidades com página dedicada (Ideal NET + Teralink). */
+/** Slugs de cidades com página dedicada (Ideal Net + Teralink). */
 export function getAllPublicCitySlugs(): readonly string[] {
   return [...idealNetCityIds, "teralink"];
 }
@@ -37,7 +37,7 @@ export function getCityLabelBySlug(slug: string): string | null {
     return getTeralink().label;
   }
   const c = getIdealNetCity(slug);
-  return c ? `Ideal NET — ${c.titleCity}` : null;
+  return c ? `Ideal Net — ${c.titleCity}` : null;
 }
 
 export { getIdealNetCity, getTeralink, idealNetCityIds, isIdealNetCityId, sites };

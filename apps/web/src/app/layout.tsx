@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s | Ideal Soluções",
   },
   description:
-    "Internet, desenvolvimento, automação e rastreamento. Grupo Ideal Soluções (Ideal NET, Teralink e mais).",
+    "Internet, desenvolvimento, automação e rastreamento. Grupo Ideal Soluções (Ideal Net, Teralink e mais).",
   icons: {
     icon: [{ url: "/images/icone.png", type: "image/png" }],
     apple: "/images/icone.png",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "Ideal Soluções",
     title: "Ideal Soluções — Conectividade e Tecnologia",
     description:
-      "Internet, desenvolvimento, automação e rastreamento. Ideal NET, Teralink e mais.",
+      "Internet, desenvolvimento, automação e rastreamento. Ideal Net, Teralink e mais.",
     images: [{ url: "/opengraph-image" }],
   },
   twitter: {

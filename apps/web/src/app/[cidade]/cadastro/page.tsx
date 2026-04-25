@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: Props) {
   const base = new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   );
-  const title = `Cadastro | Ideal NET ${c.titleCity}`;
-  const description = `Preencha seu cadastro de internet em ${c.titleCity}. A equipe da Ideal NET entrará em contato.`;
+  const title = `Cadastro | Ideal Net ${c.titleCity}`;
+  const description = `Preencha seu cadastro de internet em ${c.titleCity}. A equipe da Ideal Net entrará em contato.`;
   return {
     title,
     description,
@@ -41,7 +41,7 @@ export default async function CidadeCadastroPage({ params }: Props) {
     <div className="min-h-screen bg-zinc-100 py-8 sm:py-12">
       <p className="mb-4 text-center">
         <Link href={`/${c.id}`} className="text-sm text-blue-600 hover:underline">
-          ← Ideal NET {c.titleCity}
+          ← Ideal Net {c.titleCity}
         </Link>{" "}
         ·{" "}
         <Link href="/" className="text-sm text-zinc-500 hover:underline">
@@ -51,7 +51,7 @@ export default async function CidadeCadastroPage({ params }: Props) {
       <CadastroForm
         city={c.id as "palmacia" | "pacoti" | "ibicuitinga"}
         title="Cadastro de clientes"
-        subtitle={`Ideal NET - ${c.titleCity}/CE`}
+        subtitle={`Ideal Net - ${c.titleCity}/CE`}
         logoSrc="ideal"
       />
     </div>

@@ -46,7 +46,7 @@ export function IdealNetLeadForm({ cityTitle, whatsappPhoneParam, plans }: Props
     setSending(true);
     const fd = new FormData(e.currentTarget);
     const data = Object.fromEntries(fd) as Record<string, string>;
-    const msg = `Olá! Ideal NET — ${cityTitle}
+    const msg = `Olá! Ideal Net — ${cityTitle}
 
 *Nome:* ${data.nome}
 *Telefone:* ${data.telefone}

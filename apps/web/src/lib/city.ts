@@ -14,9 +14,9 @@ export function pathSegmentToCity(segment: string): City | null {
 
 const labels: Record<City, string> = {
   TERALINK: "Teralink (Fortaleza)",
-  PALMACIA: "Ideal NET - Palmácia/CE",
-  PACOTI: "Ideal NET - Pacoti/CE",
-  IBICUITINGA: "Ideal NET - Ibicuitinga/CE",
+  PALMACIA: "Ideal Net - Palmácia/CE",
+  PACOTI: "Ideal Net - Pacoti/CE",
+  IBICUITINGA: "Ideal Net - Ibicuitinga/CE",
 };
 
 export function cityLabel(city: City): string {

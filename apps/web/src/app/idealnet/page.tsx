@@ -8,13 +8,13 @@ import {
 import type { Metadata } from "next";
 
 const DESC =
-  "Ideal NET: fibra óptica, rádio e planos empresariais em Palmácia, Pacoti e Ibicuitinga. Escolha a cidade, compare preços e fale com a unidade no WhatsApp.";
+  "Ideal Net: fibra óptica, rádio e planos empresariais em Palmácia, Pacoti e Ibicuitinga. Escolha a cidade, compare preços e fale com a unidade no WhatsApp.";
 
 export const metadata: Metadata = {
-  title: "Ideal NET — Internet de fibra e rádio no Ceará",
+  title: "Ideal Net — Internet de fibra e rádio no Ceará",
   description: DESC,
   openGraph: {
-    title: "Ideal NET — Internet de fibra e rádio",
+    title: "Ideal Net — Internet de fibra e rádio",
     description: DESC,
     type: "website",
   },

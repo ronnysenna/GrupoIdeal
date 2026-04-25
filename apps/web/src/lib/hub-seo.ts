@@ -39,7 +39,7 @@ export function buildHubJsonLd(): Record<string, unknown> {
         alternateName: ["Grupo Ideal", "Ideal Soluções"],
         url: base,
         description:
-          "Grupo de tecnologia com internet (Ideal NET e Teralink), rastreamento veicular (Ideal Rastreamento) e desenvolvimento com IA (Ideal Soluções Digitais) no Ceará e no Brasil.",
+          "Grupo de tecnologia com internet (Ideal Net e Teralink), rastreamento veicular (Ideal Rastreamento) e desenvolvimento com IA (Ideal Soluções Digitais) no Ceará e no Brasil.",
         image: absUrl("/images/logoGrupoIdeal.png"),
         email: HUB_EMAIL,
         telephone: HUB_PHONE_TEL,

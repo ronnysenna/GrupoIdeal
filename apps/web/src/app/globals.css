@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @source "../../../../packages/ui/src/**/*.tsx";
 
-/* Marca: hub escuro, Ideal NET (slate) e Teralink (azul) */
+/* Marca: hub escuro, Ideal Net (slate) e Teralink (azul) */
 :root {
   --background: #ffffff;
   --foreground: #0f172a;

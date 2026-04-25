@@ -71,7 +71,7 @@ ${data.comentario}`;
             Selecione
           </option>
           <option value="Grupo Ideal (geral)">Grupo Ideal (geral)</option>
-          <option value="Ideal NET">Ideal NET</option>
+          <option value="Ideal Net">Ideal Net</option>
           <option value="Teralink Fibra">Teralink Fibra</option>
           <option value="Ideal Rastreamento">Ideal Rastreamento</option>
           <option value="Ideal Soluções Digitais">Ideal Soluções Digitais</option>

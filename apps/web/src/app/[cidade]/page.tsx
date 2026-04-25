@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props) {
   const c = getIdealNetCity(cidade);
   if (!c) return { title: "Cidade" };
   return {
-    title: `Ideal NET ${c.titleCity} | Internet fibra e rádio`,
+    title: `Ideal Net ${c.titleCity} | Internet fibra e rádio`,
     description: `Internet de alta velocidade em ${c.titleCity}. Contato, planos e cadastro.`,
   };
 }
@@ -61,7 +61,7 @@ export default async function CidadePage({ params }: Props) {
       </header>
 
       <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-        <h1 className="text-3xl font-bold">Ideal NET {c.titleCity}</h1>
+        <h1 className="text-3xl font-bold">Ideal Net {c.titleCity}</h1>
         <p className="mt-1 text-slate-600">Internet com suporte local e central do assinante.</p>
 
         <div className="mt-6 space-y-2 rounded-2xl border border-slate-200 bg-white p-4 text-sm">

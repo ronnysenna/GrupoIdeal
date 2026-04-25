@@ -430,7 +430,7 @@ export function TeralinkView({ teralink }: Props) {
                   href="/idealnet"
                   className="mt-1 block text-zinc-400 transition hover:text-white"
                 >
-                  Ideal NET
+                  Ideal Net
                 </Link>
                 <Link
                   href="/rastreamento"
