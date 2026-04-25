@@ -9,6 +9,7 @@ import {
   RASTREAMENTO_FAQ,
   RASTREAMENTO_HIGHLIGHTS,
   RASTREAMENTO_LEGAL,
+  RASTREAMENTO_PRECO_DESTAQUE,
   RASTREAMENTO_SOCIAL,
   RASTREAMENTO_VEHICLE_TYPES,
 } from "@/content/rastreamento";
@@ -153,6 +154,22 @@ export function RastreamentoView() {
           <p className="mt-2 max-w-xl text-sm text-zinc-400">
             Planos especiais <span className="font-semibold text-amber-300">para frotas!</span>{" "}
             Atendimento em todo o Brasil.
+          </p>
+          <p className="mt-6 text-center sm:text-left">
+            <span className="inline-flex flex-col items-stretch gap-1 rounded-2xl border border-amber-400/40 bg-amber-500/10 px-4 py-3 shadow-lg shadow-amber-500/15 sm:inline-flex sm:flex-row sm:items-baseline sm:gap-3">
+              <span className="text-xs font-semibold uppercase tracking-wider text-amber-200/95">
+                {RASTREAMENTO_PRECO_DESTAQUE.titulo}
+              </span>
+              <span className="text-3xl font-extrabold tabular-nums text-white sm:text-4xl">
+                R$&nbsp;{RASTREAMENTO_PRECO_DESTAQUE.inteiro}
+                <span className="text-2xl font-bold text-amber-300 sm:text-3xl">
+                  {RASTREAMENTO_PRECO_DESTAQUE.centavos}
+                </span>
+                <span className="ml-1 text-base font-semibold text-zinc-400">
+                  {RASTREAMENTO_PRECO_DESTAQUE.sufixo}
+                </span>
+              </span>
+            </span>
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <a

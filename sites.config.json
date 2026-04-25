@@ -26,7 +26,7 @@
         "centralUrl": "https://central.teralinkfibra.com.br/central/login.hhvm"
       },
       "plans": [
-        { "speed": "50", "price": "54,90" },
+        { "speed": "50", "price": "49,90" },
         { "speed": "80", "price": "79,90" },
         { "speed": "100", "price": "89,90" },
         { "speed": "200", "price": "99,90" }

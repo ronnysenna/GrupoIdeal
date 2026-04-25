@@ -121,7 +121,7 @@ export const HUB_BRANDS: HubBrand[] = [
     shortName: "Teralink",
     tagline: "Internet residencial e empresarial em Fortaleza",
     description:
-      "Fibra dedicada na capital cearense, com planos a partir de R$ 54,90 e suporte local.",
+      "Fibra dedicada na capital cearense, com planos a partir de R$ 49,90 e suporte local.",
     badge: "Fortaleza · CE",
     href: "/teralink",
     external: false,

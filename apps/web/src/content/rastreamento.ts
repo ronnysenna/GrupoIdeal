@@ -32,6 +32,14 @@ export const RASTREAMENTO_APP_LINKS = {
     "https://ideal.rastrosystem.com.br/acl/login/?next=/",
 } as const;
 
+/** Preço de entrada em destaque na página Ideal Rastreamento (não confundir com planos de internet Teralink). */
+export const RASTREAMENTO_PRECO_DESTAQUE = {
+  titulo: "Planos a partir de",
+  inteiro: "54",
+  centavos: ",90",
+  sufixo: "/mês",
+} as const;
+
 export const RASTREAMENTO_FAQ: { q: string; a: string }[] = [
   {
     q: "A Ideal Rastreamento atende em todo o Brasil?",

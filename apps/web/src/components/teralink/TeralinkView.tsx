@@ -128,18 +128,6 @@ export function TeralinkView({ teralink }: Props) {
             Velocidade real, estabilidade garantida e o melhor custo-benefício para sua
             casa ou empresa.
           </p>
-          <p className="mt-6 text-center sm:text-left">
-            <span className="inline-flex flex-col items-stretch gap-1 rounded-2xl border border-cyan-400/35 bg-cyan-500/10 px-4 py-3 shadow-lg shadow-cyan-500/10 sm:inline-flex sm:flex-row sm:items-baseline sm:gap-3">
-              <span className="text-xs font-semibold uppercase tracking-wider text-cyan-200/90">
-                Planos a partir de
-              </span>
-              <span className="text-3xl font-extrabold tabular-nums text-white sm:text-4xl">
-                R$&nbsp;54
-                <span className="text-2xl font-bold text-cyan-200 sm:text-3xl">,90</span>
-                <span className="ml-1 text-base font-semibold text-zinc-400">/mês</span>
-              </span>
-            </span>
-          </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="#planos"
@@ -176,9 +164,6 @@ export function TeralinkView({ teralink }: Props) {
             <h2 className="text-2xl font-bold text-white sm:text-3xl">Nossos planos</h2>
             <p className="mt-2 text-zinc-400">
               Internet rápida, estável e com o melhor custo-benefício
-            </p>
-            <p className="mt-3 text-sm font-semibold text-cyan-300">
-              Entrada a partir de R$ 54,90/mês no 50 Mega — confira as condições no contato
             </p>
           </div>
           <ul
