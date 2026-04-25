@@ -58,9 +58,9 @@ export function RastreamentoView() {
             <Image
               src="/images/Logo_rastro.png"
               alt="Ideal Rastreamento"
-              width={220}
-              height={64}
-              className="h-12 w-auto sm:h-14"
+              width={780}
+              height={80}
+              className="h-[80px] w-auto max-w-full object-contain object-left"
               priority
             />
           </Link>
@@ -437,9 +437,9 @@ export function RastreamentoView() {
               <Image
                 src="/images/Logo_rastro.png"
                 alt="Ideal Rastreamento"
-                width={200}
-                height={56}
-                className="h-12 w-auto opacity-95"
+                width={780}
+                height={80}
+                className="h-[80px] w-auto max-w-full object-contain object-left opacity-95"
               />
               <p className="mt-2 max-w-sm text-sm text-zinc-500">
                 Seu patrimônio protegido com rastreamento, alertas e gestão 24/7.

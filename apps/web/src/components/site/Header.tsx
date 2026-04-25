@@ -66,9 +66,9 @@ export function SiteHeader() {
           <Image
             src="/images/logoGrupoIdeal.png"
             alt="Grupo Ideal"
-            width={180}
-            height={60}
-            className="h-9 w-auto sm:h-10"
+            width={480}
+            height={80}
+            className="h-12 w-auto max-w-full object-contain object-left sm:h-14 md:h-16"
             priority
           />
         </a>
@@ -147,9 +147,9 @@ export function SiteHeader() {
             <Image
               src="/images/logoGrupoIdeal.png"
               alt="Grupo Ideal"
-              width={140}
-              height={48}
-              className="h-9 w-auto"
+              width={400}
+              height={68}
+              className="h-12 w-auto max-w-[min(100%,20rem)] object-contain object-left sm:h-14"
             />
             <button
               type="button"

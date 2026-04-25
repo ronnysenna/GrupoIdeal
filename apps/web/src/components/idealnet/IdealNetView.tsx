@@ -94,9 +94,9 @@ export function IdealNetView({ cities, initialCityId }: Props) {
             <Image
               src="/images/logo.png"
               alt="Ideal NET"
-              width={160}
-              height={48}
-              className="h-9 w-auto"
+              width={780}
+              height={80}
+              className="h-10 w-auto max-w-full object-contain object-left sm:h-12"
               priority
             />
           </Link>
@@ -516,9 +516,9 @@ export function IdealNetView({ cities, initialCityId }: Props) {
               <Image
                 src="/images/logo.png"
                 alt="Ideal NET"
-                width={120}
-                height={36}
-                className="h-8 w-auto opacity-95"
+                width={780}
+                height={80}
+                className="h-9 w-auto max-w-full object-contain object-left opacity-95 sm:h-10"
               />
               <p className="mt-2 text-sm text-zinc-400">Internet de qualidade para sua casa e empresa.</p>
             </div>

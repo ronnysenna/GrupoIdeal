@@ -39,14 +39,11 @@ export function SolucoesDigitaisView() {
             <Image
               src="/images/logoGrupoIdeal.png"
               alt="Ideal Soluções Digitais"
-              width={180}
-              height={48}
-              className="h-10 w-auto"
+              width={780}
+              height={80}
+              className="h-[80px] w-auto max-w-full object-contain object-left"
               priority
             />
-            <span className="hidden text-sm font-semibold text-violet-200 sm:block">
-              Soluções Digitais
-            </span>
           </Link>
           <nav className="hidden items-center gap-5 text-sm font-medium text-zinc-300 md:flex">
             <a href="#servicos" className="hover:text-violet-300">
@@ -290,7 +287,13 @@ export function SolucoesDigitaisView() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-start">
             <div>
-              <p className="text-sm font-semibold text-white">Ideal Soluções Digitais</p>
+              <Image
+                src="/images/logoGrupoIdeal.png"
+                alt="Ideal Soluções Digitais"
+                width={780}
+                height={80}
+                className="h-[80px] w-auto max-w-full object-contain object-left opacity-95"
+              />
               <p className="mt-2 max-w-sm text-sm text-zinc-500">
                 Parte do Grupo Ideal — sites, sistemas e IA para o seu crescimento.
               </p>

@@ -54,9 +54,9 @@ export function TeralinkView({ teralink }: Props) {
             <Image
               src="/images/logoteralink.png"
               alt="Teralink Fibra"
-              width={200}
-              height={72}
-              className="h-16 w-auto sm:h-[72px]"
+              width={780}
+              height={80}
+              className="h-[80px] w-auto max-w-full object-contain object-left"
               priority
             />
           </Link>
@@ -374,9 +374,9 @@ export function TeralinkView({ teralink }: Props) {
               <Image
                 src="/images/logoteralink.png"
                 alt="Teralink Fibra"
-                width={200}
-                height={64}
-                className="h-14 w-auto opacity-95"
+                width={780}
+                height={80}
+                className="h-[80px] w-auto max-w-full object-contain object-left opacity-95"
               />
               <p className="mt-2 text-sm text-zinc-400">
                 Internet de qualidade com fibra óptica para você e sua empresa.
