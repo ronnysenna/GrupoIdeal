@@ -15,7 +15,11 @@ export const metadata: Metadata = {
   },
   description:
     "Internet, desenvolvimento, automação e rastreamento. Grupo Ideal Soluções (Ideal NET, Teralink e mais).",
-  icons: { icon: "/images/icone.png" },
+  icons: {
+    icon: [{ url: "/images/icone.png", type: "image/png" }],
+    apple: "/images/icone.png",
+    shortcut: "/images/icone.png",
+  },
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
